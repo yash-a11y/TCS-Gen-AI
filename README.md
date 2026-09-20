@@ -10,9 +10,9 @@ This repository is a local demo: synthetic customers (including **Ema Patel**), 
 
 | You ask | What happens |
 | --- | --- |
-| ùWhat is the current refund policy?ù | RAG agent searches policy PDFs |
-| ùGive me an overview of customer Ema and her ticketsù | SQL agent reads SQLite |
-| ùDoes Emaùs refund ticket match the refund policy?ù | Hybrid: SQL + RAG, then one answer |
+| "What is the current refund policy?" | RAG agent searches policy PDFs |
+| "Give me an overview of customer Ema and her tickets" | SQL agent reads SQLite |
+| "Does Ema's refund ticket match the refund policy?" | Hybrid: SQL + RAG, then one answer |
 | Upload a new policy PDF in the sidebar | Document is chunked, embedded, and indexed |
 
 ---
@@ -21,17 +21,17 @@ This repository is a local demo: synthetic customers (including **Ema Patel**), 
 
 ```text
 Streamlit chat
-      ?
-      ?
-LangGraph supervisor ??? sql | rag | hybrid
-      ?
-      ?
+      |
+      v
+LangGraph supervisor --> sql | rag | hybrid
+      |
+      v
 MCP tools (FastMCP)
-      ??? get_customer_profile / get_customer_tickets / run_readonly_sql
-      ??? search_policies / ingest_pdf
-              ?
-              ??? SQLite   data/support.db
-              ??? FAISS    data/faiss_store
+      |-- get_customer_profile / get_customer_tickets / run_readonly_sql
+      |-- search_policies / ingest_pdf
+              |
+              |-- SQLite   data/support.db
+              |-- FAISS    data/faiss_store
 ```
 
 By default the graph talks to MCP **in-process** (one command for the UI). You can also run MCP as a separate HTTP process for a two-terminal demo.
@@ -115,9 +115,9 @@ python -m src.seed
 
 This creates:
 
-- `data/support.db` ù 15 customers, 24 tickets (including Ema)
-- `data/policies/*.pdf` ù refund, privacy, and SLA samples
-- `data/faiss_store/` ù FAISS index + metadata
+- `data/support.db` -- 15 customers, 24 tickets (including Ema)
+- `data/policies/*.pdf` -- refund, privacy, and SLA samples
+- `data/faiss_store/` -- FAISS index + metadata
 
 The first seed download of MiniLM can take a minute.
 
