@@ -1,4 +1,4 @@
-# Acme Support Assistant
+# Support Assistant
 
 Generative AI multi-agent system for a customer-support workflow. A support agent (John) can ask natural-language questions about **structured customer data** (SQLite) and **unstructured policy PDFs** (RAG over FAISS). A LangGraph supervisor routes each question to a SQL specialist, a policy specialist, or both. Tools are exposed through an **MCP server**.
 
